@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MO Votes — Email Template Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:    #083a51;
+    --blue:    #106a94;
+    --cyan:    #38b1ea;
+    --cyan-lt: #d0eef9;
+    --light:   #e8f6fd;
+    --offwhite:#f4fafd;
+    --gray:    #64748b;
+    --white:   #ffffff;
+    --tip-bg:  #fffbeb;
+    --tip-bdr: #f59e0b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: var(--offwhite); color: var(--navy); min-height: 100vh; }
+
+  .header {
+    background: var(--navy);
+    padding: 0 2rem;
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+  .header-inner {
+    max-width: 1000px; margin: 0 auto;
+    height: 60px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { font-size: 1.3rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em; }
+  .logo span { color: var(--cyan); }
+  .tagline { font-size: 0.68rem; color: rgba(255,255,255,0.4); font-style: italic; }
+
+  .layout {
+    max-width: 1000px; margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    display: grid; grid-template-columns: 256px 1fr; gap: 1.75rem; align-items: start;
+  }
+
+  .sidebar { position: sticky; top: 76px; }
+  .sidebar-label { font-size: 0.61rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem; }
+  .nav { display: flex; flex-direction: column; gap: 0.35rem; }
+
+  .nav-btn {
+    background: var(--white); border: 1.5px solid var(--cyan-lt); border-radius: 10px;
+    padding: 0.65rem 0.9rem; cursor: pointer; text-align: left; transition: all 0.15s; width: 100%;
+  }
+  .nav-btn:hover { border-color: var(--cyan); transform: translateX(2px); }
+  .nav-btn.active { background: var(--navy); border-color: var(--navy); }
+  .nav-num { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 0.1rem; }
+  .nav-btn.active .nav-num { color: rgba(56,177,234,0.7); }
+  .nav-title { font-size: 0.82rem; font-weight: 600; color: var(--navy); display: block; line-height: 1.3; }
+  .nav-btn.active .nav-title { color: var(--white); }
+  .nav-when { font-size: 0.7rem; color: var(--gray); display: block; margin-top: 0.1rem; line-height: 1.3; }
+  .nav-btn.active .nav-when { color: rgba(255,255,255,0.5); }
+
+  .card { background: var(--white); border-radius: 14px; box-shadow: 0 4px 24px rgba(8,58,81,0.09); overflow: hidden; animation: rise 0.2s ease; }
+  @keyframes rise { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+
+  .card-top { background: var(--navy); padding: 1.3rem 1.7rem 1.1rem; }
+  .card-num { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.25rem; }
+  .card-title { font-size: 1.3rem; font-weight: 800; color: var(--white); }
+  .card-when { font-size: 0.76rem; color: var(--cyan-lt); margin-top: 0.25rem; font-style: italic; }
+
+  .card-body { padding: 1.5rem 1.7rem; }
+
+  .tip {
+    background: var(--tip-bg); border-left: 4px solid var(--tip-bdr);
+    border-radius: 0 8px 8px 0; padding: 0.65rem 0.9rem;
+    font-size: 0.79rem; color: #78350f; line-height: 1.5; margin-bottom: 1.2rem;
+  }
+  .tip strong { color: #92400e; }
+
+  .field-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 0.4rem; }
+
+  .subject-box {
+    background: var(--light); border: 1.5px solid var(--cyan-lt); border-radius: 8px;
+    padding: 0.65rem 1rem; font-size: 0.9rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 1.3rem; user-select: all;
+  }
+
+  .meta { border: 1.5px solid var(--cyan-lt); border-radius: 10px; overflow: hidden; margin-bottom: 1.3rem; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; }
+  .meta-row + .meta-row { border-top: 1px solid var(--cyan-lt); }
+  .meta-k { background: var(--navy); color: var(--white); font-size: 0.7rem; font-weight: 600; padding: 0.5rem 0.75rem; display: flex; align-items: center; }
+  .meta-v { background: #f0faff; font-size: 0.8rem; color: var(--navy); padding: 0.5rem 0.85rem; display: flex; align-items: center; }
+
+  .body-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.4rem; }
+  .body-hint { font-size: 0.67rem; color: var(--gray); font-style: italic; }
+
+  .email-body {
+    width: 100%; min-height: 280px;
+    border: 1.5px solid var(--cyan-lt); border-radius: 10px;
+    padding: 1rem 1.1rem; font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem; line-height: 1.8; color: var(--navy);
+    background: #fafeff; resize: vertical; outline: none; transition: border-color 0.15s;
+  }
+  .email-body:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(56,177,234,0.1); }
+
+  .ph-legend { font-size: 0.67rem; color: var(--gray); margin-top: 0.45rem; font-style: italic; }
+  .ph-legend mark { background: #fff3cd; color: #7B0000; border-radius: 3px; padding: 0 3px; font-style: normal; font-weight: 600; }
+
+  .actions {
+    display: flex; gap: 0.55rem; flex-wrap: wrap; align-items: center;
+    padding: 1.1rem 1.7rem; background: var(--light); border-top: 1.5px solid var(--cyan-lt);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 1rem; border-radius: 8px; font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem; font-weight: 600; cursor: pointer; border: none;
+    transition: all 0.15s; text-decoration: none; white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-copy    { background: var(--navy); color: var(--white); }
+  .btn-copy:hover { background: var(--blue); box-shadow: 0 4px 14px rgba(8,58,81,0.22); }
+  .btn-gmail   { background: #ea4335; color: var(--white); }
+  .btn-gmail:hover { background: #c5221f; }
+  .btn-outlook { background: #0078d4; color: var(--white); }
+  .btn-outlook:hover { background: #005a9e; }
+
+  .toast { font-size: 0.76rem; font-weight: 600; color: #15803d; display: flex; align-items: center; gap: 0.35rem; opacity: 0; transition: opacity 0.25s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+
+  @media (max-width: 680px) {
+    .layout { grid-template-columns: 1fr; padding: 1rem 1rem 3rem; }
+    .sidebar { position: static; }
+    .nav { flex-direction: row; flex-wrap: wrap; }
+    .nav-btn { flex: 1 1 46%; }
+    .tagline { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">MO <span>Votes</span>&ensp;<span style="font-weight:400;font-size:0.85rem;color:var(--cyan-lt)">Email Templates</span></div>
+    <span class="tagline">Powered by Vot-ER · Voting as a Social Determinant of Health</span>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-label">Choose a template</div>
+    <nav class="nav" id="nav"></nav>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<script>
+const T = [
+  {
+    id:1, title:"Warm Intro Request", timing:"Same day",
+    when:"A mutual contact offered to connect you",
+    tip: null,
+    subject:"Connecting with [Mutual Contact Name]'s Network — MO Votes",
+    meta:[
+      {k:"Send",  v:"Same day or within 24 hours"},
+      {k:"Time",  v:"Morning (9–11 AM recommended)"},
+      {k:"To",    v:"[Partner Contact Name]"},
+      {k:"From",  v:"Felicia Hampton, [Your Title(s) / Affiliation(s)]"},
+    ],
+    body:`Hi [First Name],
+
+[Mutual Contact Name] speaks highly of the work you're doing at [Organization] and thought we should connect. I'm glad they did.
+
+I'm leading partnership engagement for MO Votes — a nonpartisan voter mobilization campaign powered by Vot-ER, a national organization that embeds civic engagement into healthcare. Our premise is straightforward: voting is a social determinant of health, and healthcare is one of the most trusted spaces to act on that.
+
+We're building a statewide network of Missouri healthcare organizations that are ready to normalize civic participation — not as a political act, but as part of whole-person care. Based on what you're doing at [Organization], I think you'd find real alignment here.
+
+Would you have 20 minutes for a call? I'd love to hear what you're already doing in this space and share how MO Votes could support your work. I'm available [Date Option 1] or [Date Option 2] — happy to work around your schedule.
+
+Warmly,
+Felicia Hampton
+[Your Title(s) / Affiliation(s)]`
+  },
+  {
+    id:2, title:"Connector Introduction", timing:"Within 24 hrs",
+    when:"Your connector sends this on your behalf",
+    tip:"Share this with your connector and ask them to send it from their own inbox, cc'ing you. The ask is simple: lend their name. Their credibility does the work.",
+    subject:"You Two Should Talk — MO Votes & Vot-ER",
+    meta:[
+      {k:"Send",  v:"Within 24 hours of connector agreeing"},
+      {k:"Time",  v:"Morning (9–11 AM recommended)"},
+      {k:"To",    v:"[New Contact First Name + Email]"},
+      {k:"CC",    v:"Felicia Hampton + [Felicia's Email]"},
+      {k:"From",  v:"[Connector Name] — sent from their inbox"},
+    ],
+    body:`Hi [New Contact First Name],
+
+I'm connecting you with Felicia Hampton, who leads partnership engagement for MO Votes — a nonpartisan voter mobilization campaign powered by Vot-ER, a national organization that embeds civic engagement into healthcare settings. The core idea: voting is a social determinant of health.
+
+I know your work at [Organization] — and I think this is exactly the kind of initiative you'd want to be part of. Especially with [the primaries coming up / Missouri's civic landscape shifting / the communities you serve], the timing feels right.
+
+I'll let Felicia take it from here. [New Contact First Name], she's cc'd and will follow up directly.
+
+Warmly,
+[Connector Name]
+[Connector Title / Organization]`
+  },
+  {
+    id:3, title:"Post-Meeting Follow-Up", timing:"Within 48 hrs",
+    when:"After any first meeting with a partner",
+    tip: null,
+    subject:"Great Connecting — Next Steps for MO Votes",
+    meta:[
+      {k:"Send",  v:"Within 48 hours — while the conversation is fresh"},
+      {k:"Time",  v:"Morning (9–11 AM recommended)"},
+      {k:"To",    v:"[Partner Contact Name]"},
+      {k:"From",  v:"Felicia Hampton, [Your Title(s) / Affiliation(s)]"},
+    ],
+    body:`Hi [First Name],
+
+Thank you for your time — that conversation reinforced exactly why this work matters, and why the right partners make all the difference.
+
+Two concrete ways to move forward:
+
+1. Send a Primary Reminder. Before the Missouri primaries, send one email to your [staff / members / network] with a simple message: make a voting plan. I've attached a ready-to-use template — it takes less than 10 minutes to deploy. Turnout in primary elections is decided by margins. This matters.
+
+2. Open a Door. Is there someone at [a partner hospital / a member organization / a peer institution] we should be talking to? A warm introduction from you carries weight we can't manufacture. We're building this network one trusted relationship at a time, and yours could unlock the next one.
+
+I've attached a Vot-ER one-pager for anyone on your team who wants the full picture.
+
+What's the easiest next step from your end?
+
+Warmly,
+Felicia Hampton
+[Your Title(s) / Affiliation(s)]`
+  },
+  {
+    id:4, title:"Re-Engagement", timing:"2–3 weeks out",
+    when:"A prospect has gone quiet after prior contact",
+    tip: null,
+    subject:"Still Here — and the Primaries Are Getting Closer",
+    meta:[
+      {k:"Send",  v:"2–3 weeks after last contact with no response"},
+      {k:"Time",  v:"Morning (9–11 AM recommended)"},
+      {k:"To",    v:"[Partner Contact Name]"},
+      {k:"From",  v:"Felicia Hampton, [Your Title(s) / Affiliation(s)]"},
+    ],
+    body:`Hi [First Name],
+
+I know inboxes fill up fast. I'm following up because the window to act before the Missouri primaries is narrowing, and I don't want [your organization / your members / your patients] to miss it.
+
+Civic participation in primary elections is shaped by who shows up — and who gets reminded to. Healthcare organizations are uniquely positioned to close that gap. The ask is small: one email, one reminder, one nudge toward a voting plan. The impact compounds.
+
+I've re-attached our one-pager. If now isn't the right time, I'd rather know that than wonder. Either way, I'm glad to make the next step as easy as possible.
+
+Could we find 15 minutes this week?
+
+Warmly,
+Felicia Hampton
+[Your Title(s) / Affiliation(s)]`
+  },
+  {
+    id:5, title:"Partner Follow-Up", timing:"Within 48 hrs",
+    when:"After meeting CAOs, CMOs, or senior leadership",
+    tip:"Personalize the subject line with something from your conversation — e.g. 'Following Up from [Event]' — to cut through a busy leadership inbox.",
+    subject:"Following Up — Two Ways to Move MO Votes Forward",
+    meta:[
+      {k:"Send",  v:"Within 48 hours — momentum is perishable at the leadership level"},
+      {k:"Time",  v:"Morning (9–11 AM recommended)"},
+      {k:"To",    v:"[Partner Contact Name]"},
+      {k:"From",  v:"Felicia Hampton, [Your Title(s) / Affiliation(s)]"},
+    ],
+    body:`Hi [First Name],
+
+Thank you for making time — and for creating space for this conversation with your [CAOs and CMOs / leadership team / colleagues]. It's clear your organization takes whole-person care seriously. That's exactly the kind of alignment MO Votes is built on.
+
+Two asks, both with low lift and real impact:
+
+1. Send a Primary Reminder. Your organization's voice reaches people ours doesn't. A single email to your broader lists before the Missouri primaries — encouraging staff, members, or patients to make a voting plan — can meaningfully move the needle. I've attached a ready-to-use template. It's turnkey.
+
+2. Connect Us to Your Network. We're working to reach every hospital, FQHC, and community health partner in Missouri. A warm introduction from you — to your hospital system, your FQHC partners, or your peer institutions — is the fastest way to expand that reach. Your endorsement opens doors we can't knock on cold.
+
+I've also attached a Vot-ER one-pager for anyone on your team who wants to understand the national infrastructure behind this work.
+
+What's the most natural next step from your side?
+
+Warmly,
+Felicia Hampton
+[Your Title(s) / Affiliation(s)]`
+  },
+];
+
+let active = 1;
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function render(){
+  document.getElementById('nav').innerHTML = T.map(t=>`
+    <button class="nav-btn ${t.id===active?'active':''}" onclick="sel(${t.id})">
+      <span class="nav-num">Template ${t.id} · ${t.timing}</span>
+      <span class="nav-title">${t.title}</span>
+      <span class="nav-when">${t.when}</span>
+    </button>`).join('');
+
+  const t = T.find(x=>x.id===active);
+  document.getElementById('main').innerHTML = `
+    <div class="card">
+      <div class="card-top">
+        <div class="card-num">Template ${t.id}</div>
+        <div class="card-title">${t.title}</div>
+        <div class="card-when">${t.when}</div>
+      </div>
+      <div class="card-body">
+        ${t.tip?`<div class="tip"><strong>💡 Tip:</strong> ${esc(t.tip)}</div>`:''}
+        <span class="field-label">Subject Line</span>
+        <div class="subject-box">${esc(t.subject)}</div>
+        <span class="field-label">Email Details</span>
+        <div class="meta">
+          ${t.meta.map(m=>`<div class="meta-row"><div class="meta-k">${esc(m.k)}</div><div class="meta-v">${esc(m.v)}</div></div>`).join('')}
+        </div>
+        <div class="body-header">
+          <span class="field-label" style="margin:0">Email Body</span>
+          <span class="body-hint">Edit here or in your mail client</span>
+        </div>
+        <textarea class="email-body" id="body" spellcheck="true">${esc(t.body)}</textarea>
+        <p class="ph-legend">Fields in <mark>[brackets]</mark> are placeholders — swap them before sending.</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-copy" onclick="copy()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+        <button class="btn btn-gmail" onclick="send('gmail')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.279l8.073-5.786C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          Open in Gmail
+        </button>
+        <button class="btn btn-outlook" onclick="send('outlook')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M7.88 12.04q0 .45-.11.87-.1.41-.33.74-.22.33-.58.52-.37.2-.87.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87q.1-.43.34-.76.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.43.1.88zM24 12v9.38q0 .46-.33.8-.33.32-.8.32H7.13q-.46 0-.8-.33-.32-.33-.32-.8V18H1q-.41 0-.7-.3-.3-.29-.3-.7V6.95q0-.41.3-.7Q.58 6 1 6h6.1V2.55q0-.44.3-.75.3-.3.75-.3h12.9q.44 0 .75.3.3.3.3.75V10.85l1.24.72q.46.26.66.55z"/></svg>
+          Open in Outlook
+        </button>
+        <span class="toast" id="toast">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Copied!
+        </span>
+      </div>
+    </div>`;
+}
+
+function sel(id){ active=id; render(); }
+
+function getBody(){ return document.getElementById('body').value; }
+function getSubj(){ return T.find(x=>x.id===active).subject; }
+
+function copy(){
+  navigator.clipboard.writeText(`Subject: ${getSubj()}\n\n${getBody()}`).then(()=>{
+    const el=document.getElementById('toast');
+    el.classList.add('show');
+    setTimeout(()=>el.classList.remove('show'),2000);
+  });
+}
+
+function send(client){
+  const s=encodeURIComponent(getSubj()), b=encodeURIComponent(getBody());
+  window.open(client==='gmail'
+    ? `https://mail.google.com/mail/?view=cm&su=${s}&body=${b}`
+    : `https://outlook.live.com/owa/?path=/mail/action/compose&subject=${s}&body=${b}`,
+    '_blank');
+}
+
+render();
+</script>
+</body>
+</html>
