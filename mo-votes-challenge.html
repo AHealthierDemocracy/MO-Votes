@@ -21,7 +21,7 @@
 
     /* ── GLOBAL FOCUS ── */
     :focus-visible {
-      outline: 3px solid #38b1ea;
+      outline: 3px solid #c0392b;
       outline-offset: 3px;
       border-radius: 4px;
     }
@@ -33,120 +33,201 @@
       clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
 
+    :root {
+      --navy:    #083A51;
+      --blue:    #106a94;
+      --cyan:    #38b1ea;
+      --red:     #c0392b;
+      --white:   #ffffff;
+      --offwhite:#f6f7f9;
+      --light:   #eef0f4;
+      --border:  #dce2e8;
+      --gray:    #4a5568;
+      --on-dark-body: #a8cfe0;
+      --on-dark-muted: #7fb8d4;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', Arial, sans-serif; background: #f6f7f9; color: #333; line-height: 1.6; }
-    .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+    body { font-family: 'Poppins', Arial, sans-serif; background: var(--offwhite); color: #333; line-height: 1.6; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
 
-    /* Header */
-    .header { background: #083A51; border-radius: 16px; padding: 40px 30px; margin-bottom: 24px; color: #fff; background-image: linear-gradient(135deg, #083A51 0%, #0a4d6b 100%); display: flex; align-items: center; gap: 30px; }
-    .header-logo { flex-shrink: 0; }
-    .header-logo img { height: 80px; width: auto; }
-    .header-content { flex: 1; }
-    .header h1 { font-size: 32px; font-weight: 800; margin-bottom: 10px; line-height: 1.2; letter-spacing: -0.5px; }
-    /* Fix: was color: #52B8D8 on #083A51 at small size — passes AA for large text; kept */
-    .header .subtitle { font-size: 18px; color: #52B8D8; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-    .header .tagline { font-size: 16px; color: #c8e8f5; margin-top: 10px; } /* was opacity: 0.9 — explicit color instead */
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: var(--navy);
+      background-image: linear-gradient(135deg, #083A51 0%, #0c5070 60%, #106a94 100%);
+      padding: 3rem 2rem;
+      border-bottom: 3px solid var(--red);
+    }
+    .page-header-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .page-header-logo { flex-shrink: 0; }
+    .page-header-logo img { height: 72px; width: auto; }
+    .page-eyebrow {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--cyan);
+      display: block; margin-bottom: 0.5rem;
+    }
+    .page-header h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800;
+      color: var(--white); letter-spacing: -0.02em; line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .page-header-desc { font-size: 0.95rem; color: #c8e8f5; line-height: 1.6; max-width: 520px; }
+    @media (max-width: 600px) {
+      .page-header-inner { flex-direction: column; text-align: center; }
+      .page-header-desc { margin: 0 auto; }
+    }
 
-    /* Goal Thermometer */
-    .tracker-section { background: #fff; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; border-top: 5px solid #EB3C2C; }
-    .tracker-title { font-size: 16px; font-weight: 700; color: #083A51; margin-bottom: 15px; text-transform: uppercase; }
-    .progress-container { background: #e9ecef; border-radius: 50px; height: 30px; width: 100%; position: relative; overflow: hidden; margin-bottom: 10px; }
+    /* ── TRACKER ── */
+    .tracker-section {
+      background: var(--white); border-radius: 12px; padding: 1.75rem;
+      margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border-top: 4px solid var(--red);
+    }
+    .tracker-title { font-size: 0.8rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .progress-container { background: #e9ecef; border-radius: 50px; height: 28px; width: 100%; overflow: hidden; margin-bottom: 0.75rem; }
     .progress-bar {
-      background: linear-gradient(90deg, #EB3C2C, #ff6b5b); height: 100%; border-radius: 50px;
-      width: 8%; transition: width 1s ease-in-out;
-      display: flex; align-items: center; justify-content: flex-end; padding-right: 15px;
-      color: white; font-weight: bold; font-size: 14px;
+      background: linear-gradient(90deg, var(--red), #e05a4a);
+      height: 100%; border-radius: 50px;
+      display: flex; align-items: center; justify-content: flex-end; padding-right: 12px;
+      color: white; font-weight: 700; font-size: 13px;
     }
-    /* Fix: progressbar needs ARIA — see HTML */
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px; }
-    .stat-item h4 { font-size: 24px; font-weight: 800; color: #083A51; }
-    .stat-item p { font-size: 12px; color: #555; font-weight: 500; } /* darkened from #666 */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1rem; }
+    .stat-item dd { font-size: 1.5rem; font-weight: 800; color: var(--navy); }
+    .stat-item dt { font-size: 0.72rem; color: var(--gray); font-weight: 500; margin-top: 0.1rem; }
 
-    /* Main Grid */
-    .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px; }
+    /* ── MAIN GRID ── */
+    .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (max-width: 800px) { .main-grid { grid-template-columns: 1fr; } }
 
-    /* Cards */
-    .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; border: 1px solid #e1e8ed; }
-    .card-header { padding: 16px 20px; font-size: 16px; font-weight: 700; color: #083A51; background: #f8f9fa; border-bottom: 1px solid #e9ecef; display: flex; align-items: center; gap: 10px; }
-    .card-header.gold { background: #fff8e6; color: #7a5700; } /* darkened for contrast */
-    .card-body { padding: 24px; }
+    /* ── CARDS ── */
+    .card {
+      background: var(--white); border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 1.5rem; border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .card:last-child { margin-bottom: 0; }
+    .card-header {
+      padding: 0.9rem 1.25rem; font-size: 0.9rem; font-weight: 700;
+      color: var(--navy); background: #f8f9fa;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .card-header.gold { background: #fff8e6; color: #7a5700; border-bottom-color: #f0dfa0; }
+    .card-body { padding: 1.5rem; }
 
-    /* Leaderboard Table */
+    /* ── PROVIDER / FELICIA ── */
+    .provider-intro { display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 1.25rem; }
+    .provider-photo {
+      width: 140px; height: 140px; border-radius: 10px;
+      object-fit: cover; object-position: top;
+      border: 3px solid var(--red); flex-shrink: 0;
+    }
+    .provider-photo-fallback {
+      width: 140px; height: 140px; border-radius: 10px;
+      background: var(--navy); border: 3px solid var(--red);
+      display: none; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 2.2rem; color: var(--cyan); font-weight: 800;
+    }
+    @media (max-width: 520px) {
+      .provider-intro { flex-direction: column; align-items: center; text-align: center; }
+      .provider-photo, .provider-photo-fallback { width: 110px; height: 110px; }
+    }
+
+    /* ── STEPS ── */
+    .step-row { display: flex; align-items: flex-start; margin-bottom: 1.25rem; }
+    .step-row:last-of-type { margin-bottom: 0; }
+    .step-icon {
+      width: 38px; height: 38px; background: #fdecea; color: var(--red);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; margin-right: 1rem; flex-shrink: 0;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.7rem 1.25rem; border-radius: 8px;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.88rem;
+      text-decoration: none; transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+      cursor: pointer; border: none; text-align: center;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-red  { background: var(--red); color: var(--white); box-shadow: 0 4px 12px rgba(192,57,43,0.25); }
+    .btn-red:hover { background: #a93226; box-shadow: 0 6px 16px rgba(192,57,43,0.35); }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-navy:hover { background: #0a4d6b; }
+    .btn-full { width: 100%; font-size: 1rem; padding: 0.9rem; }
+    .btn-outline {
+      background: transparent; color: var(--red);
+      border: 2px solid var(--red); width: 100%;
+    }
+    .btn-outline:hover { background: var(--red); color: var(--white); }
+
+    /* ── LEADERBOARD ── */
     .leaderboard-table { width: 100%; border-collapse: collapse; }
-    .leaderboard-table th { text-align: left; font-size: 12px; color: #555; padding-bottom: 10px; border-bottom: 2px solid #eee; } /* darkened from #888 */
-    .leaderboard-table td { padding: 12px 0; border-bottom: 1px solid #f5f5f5; font-size: 14px; font-weight: 500; }
-    .rank-num { font-weight: 800; color: #0e7aab; width: 30px; display: inline-block; } /* darkened #52B8D8 for contrast on white */
-    .top-rank { color: #c0392b; } /* darkened from #EB3C2C for contrast */
-
-    /* Buttons */
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; text-align: center; }
-    .btn-cyan { background: #c0392b; color: #fff; }
-    .btn-navy { background: #083A51; color: #fff; width: 100%; }
-    .btn-red { background: #c0392b; color: #fff; box-shadow: 0 4px 10px rgba(192,57,43,0.3); } /* darkened for AA */
-    .btn-red:hover { transform: scale(1.05); box-shadow: 0 6px 14px rgba(192,57,43,0.4); }
-    .btn-large { width: 100%; font-size: 18px; padding: 18px; }
-
-    /* Animated button — hop is cosmetic only, reduced-motion safe */
-    @keyframes hop {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    .leaderboard-table th {
+      text-align: left; font-size: 0.72rem; color: var(--gray);
+      padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
     }
-    .btn-animated { animation: hop 2s ease-in-out infinite; }
-    .btn-animated:hover { animation: none; transform: scale(1.02); }
+    .leaderboard-table td { padding: 0.75rem 0; border-bottom: 1px solid #f0f2f5; font-size: 0.88rem; font-weight: 500; }
+    .rank-num { font-weight: 800; color: var(--blue); width: 28px; display: inline-block; }
+    .rank-num.top { color: var(--red); }
 
-    /* Icons */
-    .step-icon { width: 40px; height: 40px; background: #fdecea; color: #c0392b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; margin-right: 15px; flex-shrink: 0; }
-    .step-row { display: flex; align-items: flex-start; margin-bottom: 20px; }
-
-    /* Provider Photo */
-    .provider-intro { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
-    .provider-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #c0392b; flex-shrink: 0; }
-
-    /* Disabled button state */
-    .btn-disabled {
-      background: #52B8D8; color: #fff; width: 100%; font-size: 13px;
-      opacity: 1; cursor: not-allowed;
-      /* Use a muted palette to visually indicate disabled without relying on opacity alone */
-      background: #b0d9ea; color: #4a5568;
+    /* ── DASHBOARD PLACEHOLDER ── */
+    .dashboard-placeholder {
+      background: var(--navy); border-radius: 10px;
+      aspect-ratio: 16 / 7; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.75rem;
+      margin-bottom: 1rem;
+      border: 2px dashed rgba(56,177,234,0.3);
+      position: relative; overflow: hidden;
     }
-
-    /* Footer */
-    .footer { background: #083A51; border-radius: 16px; padding: 30px; text-align: center; margin-top: 20px; color: #fff; }
-    .footer p { color: #c8e8f5; } /* explicit color instead of opacity */
-
-    @media (max-width: 800px) {
-      .main-grid { grid-template-columns: 1fr; }
-      .header { flex-direction: column; text-align: center; }
-      .stats-grid { grid-template-columns: 1fr; }
-      .provider-intro { flex-direction: column; text-align: center; }
+    .dashboard-placeholder::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(56,177,234,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
+    .dashboard-placeholder-icon { color: rgba(56,177,234,0.5); }
+    .dashboard-placeholder-label { font-size: 0.82rem; font-weight: 600; color: #c8e8f5; }
+    .dashboard-placeholder-sub { font-size: 0.68rem; color: var(--on-dark-muted); font-style: italic; text-align: center; max-width: 200px; }
+
+    /* ── ABOUT VOT-ER ── */
+    .about-voter { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 1.5rem; border: 1px solid var(--border); }
+
+    /* ── PAGE FOOTER ── */
+    .page-footer {
+      background: var(--navy); border-radius: 12px;
+      padding: 2rem; text-align: center; margin-top: 1rem;
+    }
+    .page-footer img { height: 40px; margin-bottom: 0.75rem; }
+    .page-footer p { font-size: 0.82rem; color: #c8e8f5; margin-top: 0.3rem; line-height: 1.5; }
+    .page-footer .muted { font-size: 0.7rem; color: var(--on-dark-muted); margin-top: 0.75rem; }
 
     /* ── SHARED SITE NAV ── */
     .site-nav {
-      background: #083a51;
-      padding: 0 2rem;
+      background: #083a51; padding: 0 2rem;
       position: sticky; top: 0; z-index: 100;
       box-shadow: 0 2px 16px rgba(0,0,0,0.2);
       font-family: 'Poppins', Arial, sans-serif;
     }
     .site-nav-inner {
       max-width: 1020px; margin: 0 auto;
-      height: 60px; display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem;
+      height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
     .site-nav-logo {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.2rem; font-weight: 800;
+      font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 800;
       color: #ffffff; letter-spacing: -0.02em;
       text-decoration: none; white-space: nowrap; flex-shrink: 0;
     }
     .site-nav-logo span { color: #38b1ea; }
     .site-nav-links { display: flex; align-items: center; gap: 0.25rem; }
     .site-nav-link {
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.76rem; font-weight: 500;
-      color: #a8cfe0; /* was rgba(255,255,255,0.55) */
-      text-decoration: none; padding: 0.35rem 0.7rem;
+      font-family: 'Poppins', sans-serif; font-size: 0.76rem; font-weight: 500;
+      color: #a8cfe0; text-decoration: none; padding: 0.35rem 0.7rem;
       border-radius: 6px; transition: color 0.15s, background 0.15s; white-space: nowrap;
     }
     .site-nav-link:hover { color: #ffffff; background: rgba(255,255,255,0.07); }
@@ -159,8 +240,7 @@
 
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
-      .btn-animated { animation: none; }
-      *, *::before, *::after { transition-duration: 0.01ms !important; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -181,22 +261,23 @@
   </div>
 </nav>
 
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-logo">
+      <img src="Vot-ER_2024_logomark_fullcolor.png" alt="Vot-ER logo" />
+    </div>
+    <div>
+      <span class="page-eyebrow">MO Votes · 2025</span>
+      <h1>Civic Health Challenge</h1>
+      <p class="page-header-desc">Empowering Missouri's healthcare professionals to register voters, recruit champions, and mobilize communities — because voting is a social determinant of health.</p>
+    </div>
+  </div>
+</header>
+
 <main id="main-content">
   <div class="container">
 
-    <header class="header">
-      <div class="header-logo">
-        <!-- Fix: descriptive alt text -->
-        <img src="Vot-ER_2024_logomark_fullcolor.png" alt="Vot-ER logo" />
-      </div>
-      <div class="header-content">
-        <div class="subtitle">MO Votes</div>
-        <h1>Civic Health Challenge 2025</h1>
-        <p class="tagline">Empowering Missourians to make their voices heard through healthcare.</p>
-      </div>
-    </header>
-
-    <!-- Fix: role="region" + aria-labelledby, progress bar ARIA -->
+    <!-- GOAL TRACKER -->
     <section class="tracker-section" aria-labelledby="tracker-title">
       <div class="tracker-title" id="tracker-title">Missouri Goal: 10,000 Voters Empowered</div>
       <div class="progress-container">
@@ -214,116 +295,144 @@
       </div>
       <dl class="stats-grid">
         <div class="stat-item">
-          <dt style="font-size:12px; color:#555; font-weight:500; order:2;">Total Engagements</dt>
-          <dd style="font-size:24px; font-weight:800; color:#083A51; order:1;">842</dd>
+          <dd>842</dd>
+          <dt>Voter Engagements</dt>
         </div>
         <div class="stat-item">
-          <dt style="font-size:12px; color:#555; font-weight:500; order:2;">Healthcare Champions</dt>
-          <dd style="font-size:24px; font-weight:800; color:#083A51; order:1;">67</dd>
+          <dd>67</dd>
+          <dt>Healthcare Champions</dt>
         </div>
         <div class="stat-item">
-          <dt style="font-size:12px; color:#555; font-weight:500; order:2;">Participating Sites</dt>
-          <dd style="font-size:24px; font-weight:800; color:#083A51; order:1;">23</dd>
+          <dd>23</dd>
+          <dt>Participating Sites</dt>
         </div>
       </dl>
     </section>
 
     <div class="main-grid">
 
+      <!-- LEFT COLUMN -->
       <div class="left-col">
 
+        <!-- FELICIA INTRO -->
         <div class="card">
           <div class="card-body">
             <div class="provider-intro">
-              <img src="felicia.png" alt="Dr. Felicia Hampton, Program Fellow for MO Votes" class="provider-photo" />
+              <img
+                src="felicia.png"
+                alt="Dr. Felicia Hampton, Program Fellow for MO Votes"
+                class="provider-photo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="provider-photo-fallback" aria-hidden="true">FH</div>
               <div>
-                <p style="font-size: 16px; color: #444; margin-bottom: 0;">
-                  <strong>Your voice is vital.</strong> Healthcare professionals in Missouri know the health of our communities is tied to a strong democracy. Join this <span style="color:#c0392b; font-weight:700;">nonpartisan movement</span> to build healthier communities through civic engagement.
+                <p style="font-size:0.95rem; color:#444; margin-bottom:0.75rem; line-height:1.65;">
+                  <strong>Your voice is vital.</strong> Healthcare professionals in Missouri know the health of our communities is tied to a strong democracy. Join this <span style="color:var(--red); font-weight:700;">nonpartisan movement</span> to build healthier communities through civic engagement.
                 </p>
+                <p style="font-size:0.82rem; color:var(--gray); font-weight:600;">Dr. Felicia Hampton, Ph.D., BSN, RN<br/><span style="font-weight:400;">Program Fellow, MO Votes · Vot-ER</span></p>
               </div>
             </div>
-            <!-- Fix: use blockquote for the quote -->
-            <blockquote style="font-size: 14px; color: #4a5568; font-style: italic; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #c0392b;">
-              "We're not just treating symptoms—we're fostering a healthier, more equitable society by addressing the root causes of health disparities."
-              <footer style="margin-top:8px; font-style:normal; font-size:12px; color:#555;">— Dr. Felicia Hampton</footer>
+            <blockquote style="font-size:0.85rem; color:var(--gray); font-style:italic; background:#f8f9fa; padding:1rem 1.1rem; border-radius:8px; border-left:3px solid var(--red); line-height:1.65;">
+              "We're not just treating symptoms — we're fostering a healthier, more equitable society by addressing the root causes of health disparities."
+              <footer style="margin-top:0.5rem; font-style:normal; font-size:0.75rem; color:#555;">— Dr. Felicia Hampton</footer>
             </blockquote>
           </div>
         </div>
 
+        <!-- THREE WAYS TO GET INVOLVED -->
         <div class="card" aria-labelledby="get-involved-heading">
-          <!-- Fix: emoji wrapped in aria-hidden, semantic heading -->
           <div class="card-header" id="get-involved-heading">
             <span aria-hidden="true">🗳️</span> Three Ways to Get Involved
           </div>
           <div class="card-body">
-            <ol style="list-style:none; padding:0;">
+            <ol style="list-style:none; padding:0; margin-bottom:1.5rem;">
               <li class="step-row">
                 <div class="step-icon" aria-hidden="true">1</div>
                 <div>
-                  <h3 style="font-size:16px; font-weight:700; color:#083A51;">Integrate Voter Registration</h3>
-                  <p style="font-size:14px; color:#4a5568;">Use our HIPAA-compliant tools to help eligible patients and colleagues get registered to vote. Our resources do the heavy lifting—it's a small action with huge impact!</p>
+                  <h3 style="font-size:0.95rem; font-weight:700; color:var(--navy); margin-bottom:0.3rem;">Integrate Voter Registration</h3>
+                  <p style="font-size:0.85rem; color:var(--gray);">Use our HIPAA-compliant tools to help eligible patients and colleagues get registered to vote. Our resources do the heavy lifting — it's a small action with huge impact.</p>
                 </div>
               </li>
               <li class="step-row">
                 <div class="step-icon" aria-hidden="true">2</div>
                 <div>
-                  <h3 style="font-size:16px; font-weight:700; color:#083A51;">Recruit Healthcare Professionals</h3>
-                  <p style="font-size:14px; color:#4a5568;">Help us build our Missouri community by sharing this opportunity with your peers and colleagues. Together, we're stronger!</p>
+                  <h3 style="font-size:0.95rem; font-weight:700; color:var(--navy); margin-bottom:0.3rem;">Recruit Healthcare Professionals</h3>
+                  <p style="font-size:0.85rem; color:var(--gray);">Help build Missouri's network by sharing this campaign with your peers. Your network is one of the most powerful tools in this work.</p>
                 </div>
               </li>
               <li class="step-row">
                 <div class="step-icon" aria-hidden="true">3</div>
                 <div>
-                  <h3 style="font-size:16px; font-weight:700; color:#083A51;">Join the Planning Committee</h3>
-                  <p style="font-size:14px; color:#4a5568;">Take a leadership role and help design Missouri-based campaigns that advocate for your community's health on a larger scale.</p>
+                  <h3 style="font-size:0.95rem; font-weight:700; color:var(--navy); margin-bottom:0.3rem;">Join the Planning Committee</h3>
+                  <p style="font-size:0.85rem; color:var(--gray);">Take a leadership role and help design Missouri-based campaigns that advocate for your community's health on a larger scale.</p>
                 </div>
               </li>
             </ol>
-
-            <a href="https://voter.turbovote.org/how-to-vote/mo" target="_blank" rel="noopener noreferrer" class="btn btn-red btn-large btn-animated">
-              Make a Plan to Vote in Missouri<span class="sr-only"> (opens in new tab)</span>
+            <a href="make-a-plan.html" class="btn btn-red btn-full">
+              Make a Plan to Vote in Missouri
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <p style="text-align: center; font-size: 12px; color: #555; margin-top: 10px;">Nonpartisan • Free • HIPAA-Compliant</p>
+            <p style="text-align:center; font-size:0.72rem; color:var(--gray); margin-top:0.6rem;">Nonpartisan · Free · HIPAA-Compliant</p>
           </div>
         </div>
 
-        <div class="card" aria-labelledby="voices-heading">
-          <div class="card-header" id="voices-heading">
-            <span aria-hidden="true">💬</span> Voices from Missouri
+        <!-- SHARE YOUR STORY -->
+        <div class="card" aria-labelledby="story-heading">
+          <div class="card-header" id="story-heading">
+            <span aria-hidden="true">📖</span> Share Your Story
           </div>
           <div class="card-body">
-            <blockquote style="font-size: 14px; color: #4a5568; margin-bottom: 15px;">
-              "Adding voter registration to our patient intake was seamless. Our team loves knowing we're addressing health equity at its roots."
-              <footer style="font-style:normal; font-size:13px; margin-top:6px; color:#333;">— Dr. Jennifer Chen, St. Louis</footer>
-            </blockquote>
-            <blockquote style="font-size: 14px; color: #4a5568;">
-              "This isn't political—it's about empowering our patients to have a say in the policies that affect their health. It's become one of my favorite parts of practice."
-              <footer style="font-style:normal; font-size:13px; margin-top:6px; color:#333;">— Marcus Williams, NP, Kansas City</footer>
-            </blockquote>
+            <p style="font-size:0.85rem; color:var(--gray); margin-bottom:1.1rem; line-height:1.65;">
+              Has civic engagement changed how you practice? We want to hear from Missouri healthcare professionals about the real impact of this work.
+            </p>
+            <a href="stories.html" class="btn btn-outline">
+              Share Your Story
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
         </div>
 
       </div>
 
+      <!-- RIGHT COLUMN -->
       <div class="right-col">
 
+        <!-- MISSOURI DASHBOARD -->
+        <div class="card" aria-labelledby="dashboard-heading">
+          <div class="card-header" id="dashboard-heading">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Missouri Dashboard
+          </div>
+          <div class="card-body" style="padding:1rem;">
+            <div class="dashboard-placeholder" role="img" aria-label="Missouri voter engagement dashboard — chart coming soon">
+              <div class="dashboard-placeholder-icon" aria-hidden="true">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/><polyline points="3 15 8 10 12 14 17 8 21 11"/></svg>
+              </div>
+              <div class="dashboard-placeholder-label" aria-hidden="true">Dashboard Coming Soon</div>
+              <div class="dashboard-placeholder-sub" aria-hidden="true">Missouri voter engagement chart will appear here</div>
+            </div>
+            <p style="font-size:0.68rem; color:var(--gray); font-style:italic; text-align:center;">Replace the placeholder above with your Missouri dashboard embed or chart.</p>
+          </div>
+        </div>
+
+        <!-- CITY LEADERBOARD -->
         <div class="card" aria-labelledby="leaderboard-heading">
           <div class="card-header gold" id="leaderboard-heading">
             <span aria-hidden="true">🏆</span> City-Based Competition
           </div>
-          <div class="card-body" style="padding: 0;">
-            <table class="leaderboard-table" style="padding: 15px; display: block;" aria-labelledby="leaderboard-heading">
-              <caption class="sr-only">City leaderboard showing voter engagement impact by Missouri city</caption>
+          <div class="card-body" style="padding:0;">
+            <table class="leaderboard-table" style="padding:1rem; display:block;" aria-labelledby="leaderboard-heading">
+              <caption class="sr-only">City leaderboard showing voter engagements by Missouri city</caption>
               <thead>
                 <tr>
-                  <th scope="col" style="width: 15%">Rank</th>
-                  <th scope="col" style="width: 50%">City</th>
-                  <th scope="col" style="width: 35%; text-align:right;">Impact</th>
+                  <th scope="col" style="width:15%">Rank</th>
+                  <th scope="col" style="width:50%">City</th>
+                  <th scope="col" style="width:35%; text-align:right;">Voter Engagements</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><span class="rank-num top-rank" aria-label="Rank 1">1</span></td>
+                  <td><span class="rank-num top" aria-label="Rank 1">1</span></td>
                   <td>St. Louis</td>
                   <td style="text-align:right;"><strong>287</strong></td>
                 </tr>
@@ -354,85 +463,67 @@
                 </tr>
               </tbody>
             </table>
-            <div style="padding: 15px; background: #fafafa; font-size: 11px; text-align: center; color: #555;">
+            <div style="padding:0.75rem 1rem; background:#fafafa; font-size:0.68rem; text-align:center; color:var(--gray); border-top:1px solid var(--border);">
               Updated: Feb 6, 2025
             </div>
           </div>
         </div>
 
+        <!-- TOOLKIT -->
         <div class="card" aria-labelledby="toolkit-heading">
           <div class="card-header" id="toolkit-heading">
             <span aria-hidden="true">📥</span> Toolkit
           </div>
           <div class="card-body">
-            <ul style="list-style: none; padding: 0;">
-              <li style="margin-bottom: 12px;">
-                <a href="resources.html" style="text-decoration: none; color: #083A51; font-size: 14px; font-weight: 600; display: block;">
-                  Download Office Poster
-                  <span style="display: block; font-weight: 400; font-size: 12px; color: #555;">PDF for waiting rooms</span>
+            <ul style="list-style:none; padding:0; margin-bottom:1rem;">
+              <li style="margin-bottom:0.75rem;">
+                <a href="resources.html" style="text-decoration:none; color:var(--navy); font-size:0.88rem; font-weight:600; display:block;">
+                  Office Poster
+                  <span style="display:block; font-weight:400; font-size:0.75rem; color:var(--gray);">PDF for waiting rooms</span>
                 </a>
               </li>
-              <li style="margin-bottom: 12px;">
-                <a href="resources.html" style="text-decoration: none; color: #083A51; font-size: 14px; font-weight: 600; display: block;">
+              <li style="margin-bottom:0.75rem;">
+                <a href="resources.html" style="text-decoration:none; color:var(--navy); font-size:0.88rem; font-weight:600; display:block;">
                   Talking Points
-                  <span style="display: block; font-weight: 400; font-size: 12px; color: #555;">Patient conversation guides</span>
+                  <span style="display:block; font-weight:400; font-size:0.75rem; color:var(--gray);">Patient conversation guides</span>
                 </a>
               </li>
-              <li style="margin-bottom: 12px;">
-                <a href="resources.html" style="text-decoration: none; color: #083A51; font-size: 14px; font-weight: 600; display: block;">
+              <li>
+                <a href="resources.html" style="text-decoration:none; color:var(--navy); font-size:0.88rem; font-weight:600; display:block;">
                   Badge Backers
-                  <span style="display: block; font-weight: 400; font-size: 12px; color: #555;">QR codes for your ID badge</span>
+                  <span style="display:block; font-weight:400; font-size:0.75rem; color:var(--gray);">QR codes for your ID badge</span>
                 </a>
               </li>
             </ul>
-            <a href="resources.html" class="btn btn-navy" style="font-size: 12px; display:inline-flex; width:100%; justify-content:center; text-decoration:none;">Access Full Resource Library</a>
-          </div>
-        </div>
-
-        <div class="card" aria-labelledby="story-heading">
-          <div class="card-header" id="story-heading">
-            <span aria-hidden="true">📖</span> Share Your Story
-          </div>
-          <div class="card-body">
-            <p style="font-size: 13px; color: #4a5568; margin-bottom: 15px;">
-              We want to hear from you! Share how civic engagement has impacted your practice and your patients' health.
-            </p>
-            <!-- Fix: proper disabled button with aria-disabled + describedby -->
-            <button
-              class="btn btn-disabled"
-              aria-disabled="true"
-              aria-describedby="story-coming-soon"
-              style="width:100%; font-size:13px; cursor:not-allowed; border:none; font-family:'Poppins',sans-serif; padding:12px 20px; border-radius:8px; font-weight:700;"
-            >
-              Share Your Story
-            </button>
-            <p id="story-coming-soon" style="font-size:11px; color:#555; margin-top:8px; text-align:center;">This feature is coming soon.</p>
+            <a href="resources.html" class="btn btn-navy" style="width:100%; display:inline-flex; justify-content:center; font-size:0.82rem; text-decoration:none;">Access Full Resource Library</a>
           </div>
         </div>
 
       </div>
     </div>
 
-    <section class="card" aria-labelledby="about-voter-heading">
+    <!-- ABOUT VOT-ER -->
+    <section class="about-voter card" aria-labelledby="about-voter-heading">
       <div class="card-header" id="about-voter-heading">
         <span aria-hidden="true">ℹ️</span> About Vot-ER
       </div>
       <div class="card-body">
-        <p style="font-size: 14px; color: #4a5568; line-height: 1.7;">
-          Vot-ER is bridging a gap in care with a groundbreaking prescription: civic engagement. Our mission is to empower patients and healthcare professionals to address the root causes of health disparities through civic participation. Our swift and easy HIPAA-compliant resources promote employee happiness, combat burnout, and cultivate deeper trust between healthcare professionals and patients.
+        <p style="font-size:0.88rem; color:var(--gray); line-height:1.75; margin-bottom:0.9rem;">
+          Vot-ER is bridging a gap in care with a groundbreaking prescription: civic engagement. Our mission is to empower patients and healthcare professionals to address the root causes of health disparities through civic participation. Our HIPAA-compliant resources promote employee happiness, combat burnout, and cultivate deeper trust between healthcare professionals and patients.
         </p>
-        <p style="font-size: 14px; color: #4a5568; margin-top: 15px; line-height: 1.7;">
-          Since 2020, we've expanded our nonpartisan work to 900+ participating sites with 50,000+ health advocates and professionals. Featured by <em>The New York Times</em>, CNN, <em>Washington Post</em>, NBC, NPR, and PBS NewsHour. Recognizing that 83% of adults visit a healthcare facility each year, we understand the critical role these spaces play in voter registration and turnout — which directly impact public health and investment.
+        <p style="font-size:0.88rem; color:var(--gray); line-height:1.75;">
+          Since 2020, we've expanded our nonpartisan work to <strong style="color:var(--navy);">1,700+ participating sites</strong> reaching <strong style="color:var(--navy);">80,000+ individuals</strong> — with an <strong style="color:var(--red);">80% voter turnout rate nationally in 2024</strong>. Featured by <em>The New York Times</em>, CNN, <em>Washington Post</em>, NBC, NPR, and PBS NewsHour.
         </p>
       </div>
     </section>
 
-    <footer class="footer" role="contentinfo">
-      <!-- Fix: img needs alt text -->
-      <img src="https://vot-er.org/wp-content/uploads/2024/01/Vot-ER_Logo_2024.svg" alt="Vot-ER logo" style="height:40px; margin-bottom:12px;" />
-      <p style="font-size: 14px; margin-bottom: 5px; font-weight: 600;">MO Votes × Vot-ER</p>
-      <p style="font-size: 12px; color:#c8e8f5;">This campaign is nonpartisan. We do not support or oppose any candidate or party.</p>
-      <p style="font-size: 11px; color:#a8cfe0; margin-top: 15px;">Empowering democracy through healthcare since 2020</p>
+    <!-- PAGE FOOTER -->
+    <footer class="page-footer" role="contentinfo">
+      <img src="Vot-ER_2024_logomark_fullcolor.png" alt="Vot-ER logo" />
+      <p style="font-size:0.9rem; font-weight:700; color:var(--white);">MO Votes × Vot-ER</p>
+      <p>In partnership with the Missouri Foundation for Health</p>
+      <p>This campaign is nonpartisan. We do not support or oppose any candidate or party.</p>
+      <p class="muted">Empowering democracy through healthcare since 2020</p>
     </footer>
 
   </div>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Make a plan to vote in Missouri — nonpartisan voting information powered by TurboVote and Vot-ER.">
+  <meta name="theme-color" content="#083A51">
+  <title>Make a Plan to Vote — MO Votes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 0;
+      background: #38b1ea; color: #083A51;
+      font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 700;
+      padding: 0.75rem 1.5rem; z-index: 9999;
+      text-decoration: none; border-radius: 0 0 8px 0;
+    }
+    .skip-link:focus { top: 0; outline: 3px solid #083A51; outline-offset: 2px; }
+
+    :focus-visible { outline: 3px solid #c0392b; outline-offset: 3px; border-radius: 4px; }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #f6f7f9; color: #083A51; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: #083A51;
+      background-image: linear-gradient(135deg, #083A51 0%, #0c5070 60%, #106a94 100%);
+      padding: 2.5rem 2rem;
+      border-bottom: 3px solid #c0392b;
+    }
+    .page-header-inner { max-width: 960px; margin: 0 auto; }
+    .page-eyebrow {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #38b1ea;
+      display: block; margin-bottom: 0.5rem;
+    }
+    .page-header h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800;
+      color: #ffffff; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+    }
+    .page-header-desc { font-size: 0.92rem; color: #c8e8f5; line-height: 1.65; max-width: 560px; }
+
+    /* ── EMBED SECTION ── */
+    .embed-wrap {
+      max-width: 960px; margin: 2rem auto; padding: 0 1.25rem 3rem;
+    }
+    .embed-note {
+      background: #ffffff; border: 1px solid #dce2e8; border-radius: 10px;
+      padding: 0.9rem 1.1rem; margin-bottom: 1.25rem;
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.82rem; color: #4a5568; line-height: 1.6;
+    }
+    .embed-note-icon { color: #38b1ea; flex-shrink: 0; margin-top: 1px; }
+    .embed-frame-wrap {
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(8,58,81,0.12);
+      border: 1px solid #dce2e8;
+      background: #ffffff;
+      min-height: 700px;
+    }
+    .embed-frame-wrap iframe {
+      width: 100%; height: 750px; border: none; display: block;
+    }
+    .embed-fallback {
+      display: none; /* shown by JS if iframe fails */
+      padding: 3rem 2rem; text-align: center;
+    }
+    .embed-fallback p { font-size: 0.9rem; color: #4a5568; margin-bottom: 1rem; }
+    .btn-fallback {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #c0392b; color: #ffffff;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem;
+      padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none;
+    }
+
+    /* ── SHARED SITE NAV ── */
+    .site-nav {
+      background: #083a51; padding: 0 2rem;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .site-nav-inner {
+      max-width: 1020px; margin: 0 auto;
+      height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .site-nav-logo {
+      font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 800;
+      color: #ffffff; letter-spacing: -0.02em;
+      text-decoration: none; white-space: nowrap; flex-shrink: 0;
+    }
+    .site-nav-logo span { color: #38b1ea; }
+    .site-nav-links { display: flex; align-items: center; gap: 0.25rem; }
+    .site-nav-link {
+      font-family: 'Poppins', sans-serif; font-size: 0.76rem; font-weight: 500;
+      color: #a8cfe0; text-decoration: none; padding: 0.35rem 0.7rem;
+      border-radius: 6px; transition: color 0.15s, background 0.15s; white-space: nowrap;
+    }
+    .site-nav-link:hover { color: #ffffff; background: rgba(255,255,255,0.07); }
+    .site-nav-link.active { color: #38b1ea; font-weight: 600; background: rgba(56,177,234,0.1); }
+    .site-nav-divider { width: 1px; height: 18px; background: rgba(255,255,255,0.15); margin: 0 0.4rem; }
+    @media (max-width: 640px) {
+      .site-nav-link { font-size: 0.7rem; padding: 0.3rem 0.45rem; }
+      .site-nav-divider { display: none; }
+      .embed-frame-wrap iframe { height: 900px; }
+    }
+
+    footer {
+      background: #083A51; padding: 1.75rem 2rem;
+      text-align: center; font-size: 0.72rem; color: #7fb8d4;
+    }
+    footer a { color: #7fb8d4; text-decoration: underline; }
+    footer a:hover { color: #38b1ea; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="site-nav-inner">
+    <a class="site-nav-logo" href="index.html" aria-label="MO Votes — return to home">MO <span>Votes</span></a>
+    <div class="site-nav-links">
+      <a class="site-nav-link" href="index.html">Home</a>
+      <div class="site-nav-divider" aria-hidden="true"></div>
+      <a class="site-nav-link active" href="mo-votes-challenge.html">Campaign</a>
+      <a class="site-nav-link" href="resources.html">Resources</a>
+      <a class="site-nav-link" href="mo-votes-email-tool.html">Email Templates</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <span class="page-eyebrow">MO Votes · Nonpartisan</span>
+    <h1>Make a Plan to Vote in Missouri</h1>
+    <p class="page-header-desc">Check your registration, find your polling place, and make a voting plan — all in one place. Powered by TurboVote.</p>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="embed-wrap">
+
+    <div class="embed-note" role="note">
+      <span class="embed-note-icon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      </span>
+      <span>This tool is <strong>nonpartisan</strong> — it helps you register to vote and plan when and how to cast your ballot. It does not endorse any candidate or party. Provided by <a href="https://turbovote.org" target="_blank" rel="noopener noreferrer">TurboVote<span class="sr-only"> (opens in new tab)</span></a>.</span>
+    </div>
+
+    <div class="embed-frame-wrap">
+      <iframe
+        id="turbovote-frame"
+        src="https://voter.turbovote.org/how-to-vote/mo"
+        title="Make a Plan to Vote in Missouri — TurboVote"
+        allow="geolocation"
+        loading="lazy"
+      ></iframe>
+      <div class="embed-fallback" id="embed-fallback">
+        <p>If the voting tool isn't displaying, you can access it directly on the TurboVote website.</p>
+        <a href="https://voter.turbovote.org/how-to-vote/mo" target="_blank" rel="noopener noreferrer" class="btn-fallback">
+          Open TurboVote
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span class="sr-only"> (opens in new tab)</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <p>MO Votes · Powered by <a href="https://vot-er.org" target="_blank" rel="noopener noreferrer">Vot-ER<span class="sr-only"> (opens in new tab)</span></a> · Missouri Foundation for Health</p>
+  <p style="margin-top:0.35rem;">Nonpartisan voter mobilization · Voting as a Social Determinant of Health</p>
+</footer>
+
+<script>
+  // Show fallback link if the iframe can't load (e.g. X-Frame-Options blocks embedding)
+  const frame = document.getElementById('turbovote-frame');
+  const fallback = document.getElementById('embed-fallback');
+  frame.addEventListener('error', () => {
+    frame.style.display = 'none';
+    fallback.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
