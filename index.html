@@ -122,22 +122,46 @@
     max-width: 560px; margin-bottom: 2.5rem;
   }
 
+  /* ── STAT BANNER ── */
+  .stat-banner {
+    background: var(--navy);
+    border-top: 3px solid var(--red);
+    padding: 2.25rem 2rem;
+  }
+  .stat-banner-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; flex-wrap: wrap;
+  }
+  .stat-banner-item {
+    flex: 1 1 200px; text-align: center; padding: 0.75rem 1.5rem;
+  }
+  .stat-banner-num {
+    font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800;
+    color: var(--white); letter-spacing: -0.03em; line-height: 1;
+  }
+  .stat-banner-num em { color: var(--cyan); font-style: normal; }
+  .stat-banner-label {
+    font-size: 0.78rem; color: var(--on-dark-body);
+    margin-top: 0.35rem; line-height: 1.4;
+  }
+  .stat-banner-divider {
+    width: 1px; height: 52px; background: rgba(255,255,255,0.15);
+    flex-shrink: 0; margin: 0 0.5rem;
+  }
+  @media (max-width: 600px) {
+    .stat-banner-divider { display: none; }
+    .stat-banner-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .stat-banner-item:last-child { border-bottom: none; }
+  }
+
   /* ── ABOUT ── */
   .about-bg { background: var(--white); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
   .about-text h2 { font-size: 1.75rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
   .about-text h2 span { color: var(--cyan); }
   .about-text p { font-size: 0.92rem; color: var(--gray); line-height: 1.75; margin-bottom: 0.9rem; }
   .about-text p:last-child { margin-bottom: 0; }
-
-  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .stat-card {
-    background: var(--light); border: 1.5px solid var(--cyan-lt);
-    border-radius: 12px; padding: 1.2rem 1.1rem; text-align: center;
-  }
-  .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; line-height: 1; }
-  .stat-num span { color: var(--red); }
-  .stat-label { font-size: 0.72rem; color: var(--gray); margin-top: 0.3rem; line-height: 1.4; }
 
   /* ── HOW ── */
   .how-bg { background: var(--navy); }
@@ -161,21 +185,22 @@
   .contact-bg { background: var(--white); }
 
   .felicia-card {
-    display: flex; gap: 1.5rem; align-items: flex-start;
+    display: flex; gap: 2rem; align-items: flex-start;
     background: var(--light); border: 1.5px solid var(--cyan-lt);
-    border-radius: 16px; padding: 1.75rem 2rem;
+    border-radius: 16px; padding: 2rem 2.25rem;
     max-width: 720px; margin-bottom: 1.75rem;
   }
   .felicia-photo {
-    width: 88px; height: 88px; border-radius: 50%;
-    object-fit: cover; border: 3px solid var(--red);
+    width: 160px; height: 160px; border-radius: 12px;
+    object-fit: cover; object-position: top;
+    border: 3px solid var(--red);
     flex-shrink: 0;
   }
   .felicia-photo-fallback {
-    width: 88px; height: 88px; border-radius: 50%;
+    width: 160px; height: 160px; border-radius: 12px;
     background: var(--navy); border: 3px solid var(--red);
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: 1.6rem; color: var(--cyan); font-weight: 800;
+    flex-shrink: 0; font-size: 2.5rem; color: var(--cyan); font-weight: 800;
   }
   .felicia-body { flex: 1; }
   .felicia-intro { font-size: 0.92rem; color: var(--navy); line-height: 1.7; margin-bottom: 0.9rem; }
@@ -187,15 +212,15 @@
     padding: 0.65rem 0.9rem; border-radius: 0 8px 8px 0;
     line-height: 1.6;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .felicia-card { flex-direction: column; align-items: center; text-align: center; }
+    .felicia-photo, .felicia-photo-fallback { width: 120px; height: 120px; }
     .felicia-quote { text-align: left; }
   }
 
   .contact-card {
     background: var(--light); border: 1.5px solid var(--cyan-lt);
-    border-radius: 16px; padding: 2.5rem;
-    display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+    border-radius: 16px; padding: 2rem 2.25rem;
     max-width: 720px;
   }
   .contact-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.4rem; }
@@ -203,19 +228,10 @@
   .contact-role { font-size: 0.82rem; color: var(--gray); line-height: 1.5; margin-bottom: 1rem; }
   .contact-email {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.82rem; font-weight: 600; color: var(--blue);
+    font-size: 0.95rem; font-weight: 700; color: var(--red);
     text-decoration: underline; transition: color 0.15s;
   }
   .contact-email:hover { color: var(--navy); }
-  .contact-badge {
-    background: var(--navy); border-radius: 12px; padding: 1.2rem 1.5rem; text-align: center; white-space: nowrap;
-  }
-  .contact-badge-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-dark-body); display: block; margin-bottom: 0.35rem; }
-  .contact-badge-link {
-    display: block; font-size: 0.78rem; font-weight: 600; color: var(--white);
-    text-decoration: underline; line-height: 1.4;
-  }
-  .contact-badge-link:hover { color: var(--cyan); }
 
   /* ── FOOTER ── */
   footer {
@@ -308,41 +324,39 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <p class="powered">
-        Powered by <a href="https://vot-er.org" target="_blank" rel="noopener noreferrer">Vot-ER<span class="sr-only"> (opens in new tab)</span></a> in partnership with the Community Health Commission of Missouri
+        Powered by <a href="https://vot-er.org" target="_blank" rel="noopener noreferrer">Vot-ER<span class="sr-only"> (opens in new tab)</span></a> in partnership with the Missouri Foundation for Health
       </p>
     </div>
   </header>
 
+  <!-- STAT BANNER -->
+  <div class="stat-banner" aria-label="Vot-ER by the numbers">
+    <div class="stat-banner-inner">
+      <div class="stat-banner-item">
+        <div class="stat-banner-num"><span class="sr-only">80,000 plus</span><span aria-hidden="true">80k+</span></div>
+        <div class="stat-banner-label">Individuals reached nationwide</div>
+      </div>
+      <div class="stat-banner-divider" aria-hidden="true"></div>
+      <div class="stat-banner-item">
+        <div class="stat-banner-num"><span class="sr-only">1,700 plus</span><span aria-hidden="true">1,700+</span></div>
+        <div class="stat-banner-label">Participating healthcare sites</div>
+      </div>
+      <div class="stat-banner-divider" aria-hidden="true"></div>
+      <div class="stat-banner-item">
+        <div class="stat-banner-num"><em>80%</em></div>
+        <div class="stat-banner-label">Voter turnout rate nationally in 2024</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ABOUT -->
   <section class="about-bg" id="about" aria-labelledby="about-heading">
     <div class="section-inner">
-      <div class="about-grid">
-        <div class="about-text">
-          <p class="section-label" aria-hidden="true">About MO Votes</p>
-          <h2 id="about-heading">Healthcare has a role to play in <span>civic health</span></h2>
-          <p>As healthcare professionals in Missouri, we know the health of our communities is tied to a strong democracy. MO Votes is a nonpartisan movement that integrates voter registration and civic participation into healthcare settings — because when our neighbors have a voice in democracy, they have a voice in their community's well-being.</p>
-          <p>We work with hospitals, FQHCs, clinics, associations, and advocacy organizations across Missouri to make civic engagement a natural part of care. Our tools are HIPAA-compliant, easy to deploy, and built for busy healthcare environments.</p>
-          <p>Whether you're an individual provider or a large health system, there's a place for you in this work.</p>
-        </div>
-        <div class="stat-grid" role="list" aria-label="MO Votes by the numbers">
-          <div class="stat-card" role="listitem">
-            <div class="stat-num"><span class="sr-only">900 plus</span><span aria-hidden="true">900+</span></div>
-            <div class="stat-label">Vot-ER participating sites nationwide</div>
-          </div>
-          <div class="stat-card" role="listitem">
-            <div class="stat-num"><span class="sr-only">50,000 plus</span><span aria-hidden="true">50k+</span></div>
-            <div class="stat-label">Health advocates &amp; professionals mobilized</div>
-          </div>
-          <div class="stat-card" role="listitem">
-            <div class="stat-num"><span class="sr-only">83 percent</span><span aria-hidden="true">83%</span></div>
-            <div class="stat-label">of adults visit a healthcare facility each year</div>
-          </div>
-          <div class="stat-card" role="listitem">
-            <div class="stat-num">6</div>
-            <div class="stat-label">Missouri cities competing in MO Votes</div>
-          </div>
-        </div>
-      </div>
+      <p class="section-label" aria-hidden="true">About MO Votes</p>
+      <h2 class="section-title" id="about-heading">Healthcare has a role to play in <span style="color:var(--cyan)">civic health</span></h2>
+      <p style="font-size:0.92rem; color:var(--gray); line-height:1.75; margin-bottom:0.9rem;">As healthcare professionals in Missouri, we know the health of our communities is tied to a strong democracy. MO Votes is a nonpartisan movement that integrates voter registration and civic participation into healthcare settings — because when our neighbors have a voice in democracy, they have a voice in their community's well-being.</p>
+      <p style="font-size:0.92rem; color:var(--gray); line-height:1.75; margin-bottom:0.9rem;">We work with hospitals, FQHCs, clinics, associations, and advocacy organizations across Missouri to make civic engagement a natural part of care. Our tools are HIPAA-compliant, easy to deploy, and built for busy healthcare environments.</p>
+      <p style="font-size:0.92rem; color:var(--gray); line-height:1.75;">Whether you're an individual provider or a large health system, there's a place for you in this work.</p>
     </div>
   </section>
 
@@ -408,22 +422,13 @@
       </div>
 
       <div class="contact-card">
-        <div>
-          <div class="contact-label" aria-hidden="true">Partnership Engagement</div>
-          <div class="contact-name">Felicia Hampton, Ph.D., BSN, RN</div>
-          <div class="contact-role">Program Fellow, MO Votes · Powered by Vot-ER<br/>Community Health Commission of Missouri</div>
-          <!-- Fix: unobfuscated, real mailto link -->
-          <a class="contact-email" href="mailto:felicia@vot-er.org">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            felicia@vot-er.org
-          </a>
-        </div>
-        <div class="contact-badge">
-          <span class="contact-badge-label">Sign Up</span>
-          <a class="contact-badge-link" href="https://forms.vot-er.org/signup?ref=CHC-MO" target="_blank" rel="noopener noreferrer">
-            Register your organization<span class="sr-only"> (opens in new tab)</span> →
-          </a>
-        </div>
+        <div class="contact-label" aria-hidden="true">Partnership Engagement</div>
+        <div class="contact-name">Felicia Hampton, Ph.D., BSN, RN</div>
+        <div class="contact-role">Program Fellow, MO Votes · Powered by Vot-ER<br/>Missouri Foundation for Health</div>
+        <a class="contact-email" href="mailto:partnerships@vot-er.org">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          partnerships@vot-er.org
+        </a>
       </div>
     </div>
   </section>
@@ -431,7 +436,7 @@
 </main>
 
 <footer role="contentinfo">
-  <p>MO Votes · Powered by <a href="https://vot-er.org" target="_blank" rel="noopener noreferrer">Vot-ER<span class="sr-only"> (opens in new tab)</span></a> · Community Health Commission of Missouri</p>
+  <p>MO Votes · Powered by <a href="https://vot-er.org" target="_blank" rel="noopener noreferrer">Vot-ER<span class="sr-only"> (opens in new tab)</span></a> · Missouri Foundation for Health</p>
   <p style="margin-top:0.4rem;">Nonpartisan voter mobilization · Voting as a Social Determinant of Health</p>
 </footer>
 
