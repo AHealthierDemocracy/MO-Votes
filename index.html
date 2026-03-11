@@ -22,24 +22,6 @@
   body { font-family: 'Poppins', sans-serif; background: var(--offwhite); color: var(--navy); }
 
   /* ── NAV ── */
-  nav {
-    background: var(--navy);
-    padding: 0 2rem;
-    position: sticky; top: 0; z-index: 50;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
-  }
-  .nav-inner {
-    max-width: 1020px; margin: 0 auto;
-    height: 60px; display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav-logo { font-size: 1.25rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em; text-decoration: none; }
-  .nav-logo span { color: var(--cyan); }
-  .nav-links { display: flex; gap: 1.5rem; }
-  .nav-link {
-    font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.65);
-    text-decoration: none; transition: color 0.15s;
-  }
-  .nav-link:hover { color: var(--cyan); }
 
   /* ── HERO ── */
   .hero {
@@ -186,6 +168,43 @@
 
   /* ── CONTACT ── */
   .contact-bg { background: var(--white); }
+
+  /* Felicia testimonial */
+  .felicia-card {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    background: var(--light); border: 1.5px solid var(--cyan-lt);
+    border-radius: 16px; padding: 1.75rem 2rem;
+    max-width: 720px; margin-bottom: 1.75rem;
+  }
+  .felicia-photo {
+    width: 88px; height: 88px; border-radius: 50%;
+    object-fit: cover; border: 3px solid var(--cyan);
+    flex-shrink: 0;
+  }
+  .felicia-photo-fallback {
+    width: 88px; height: 88px; border-radius: 50%;
+    background: var(--navy); border: 3px solid var(--cyan);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 1.6rem; color: var(--cyan); font-weight: 800;
+  }
+  .felicia-body { flex: 1; }
+  .felicia-intro {
+    font-size: 0.92rem; color: var(--navy); line-height: 1.7;
+    margin-bottom: 0.9rem;
+  }
+  .felicia-intro strong { color: var(--navy); }
+  .felicia-intro .accent { color: var(--red, #e64c4c); font-weight: 700; }
+  .felicia-quote {
+    font-size: 0.83rem; color: var(--gray); font-style: italic;
+    background: var(--white); border-left: 3px solid var(--cyan);
+    padding: 0.65rem 0.9rem; border-radius: 0 8px 8px 0;
+    line-height: 1.6;
+  }
+  @media (max-width: 600px) {
+    .felicia-card { flex-direction: column; align-items: center; text-align: center; }
+    .felicia-quote { text-align: left; }
+  }
+
   .contact-card {
     background: var(--light); border: 1.5px solid var(--cyan-lt);
     border-radius: 16px; padding: 2.5rem;
@@ -227,21 +246,61 @@
     .stat-grid { grid-template-columns: 1fr 1fr; }
     .hero { padding: 3.5rem 1.5rem 3rem; }
     section { padding: 3rem 1.25rem; }
-    .nav-links { display: none; }
   }
+
+  /* ── SHARED SITE NAV ── */
+  .site-
+  .site-nav-inner {
+    max-width: 1020px; margin: 0 auto;
+    height: 60px; display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  .site-nav-logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem; font-weight: 800;
+    color: #ffffff; letter-spacing: -0.02em;
+    text-decoration: none; white-space: nowrap; flex-shrink: 0;
+  }
+  .site-nav-logo span { color: #38b1ea; }
+  .site-nav-links { display: flex; align-items: center; gap: 0.25rem; }
+  .site-nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.76rem; font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none; padding: 0.35rem 0.7rem;
+    border-radius: 6px; transition: all 0.15s; white-space: nowrap;
+  }
+  .site-nav-link:hover { color: #ffffff; background: rgba(255,255,255,0.07); }
+  .site-nav-link.active {
+    color: #38b1ea; font-weight: 600;
+    background: rgba(56,177,234,0.1);
+  }
+  .site-nav-divider {
+    width: 1px; height: 18px;
+    background: rgba(255,255,255,0.15); margin: 0 0.25rem;
+  }
+  @media (max-width: 600px) {
+    .site-nav-link span { display: none; }
+    .site-nav-link { font-size: 0.72rem; padding: 0.3rem 0.5rem; }
+    .site-nav-divider { display: none; }
+  }
+
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a class="nav-logo" href="index.html">MO <span>Votes</span></a>
-    <div class="nav-links">
-      <a class="nav-link" href="#about">About</a>
-      <a class="nav-link" href="#tools">Resources</a>
-      <a class="nav-link" href="#get-involved">Get Involved</a>
-      <a class="nav-link" href="#contact">Contact</a>
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a class="site-nav-logo" href="index.html">MO <span>Votes</span></a>
+    <div class="site-nav-links">
+      <a class="site-nav-link active" href="index.html">Home</a>
+      <div class="site-nav-divider"></div>
+      <a class="site-nav-link" href="#about">About</a>
+      <a class="site-nav-link" href="#tools">Resources</a>
+      <a class="site-nav-link" href="#contact">Contact</a>
+      <div class="site-nav-divider"></div>
+      <a class="site-nav-link" href="mo-votes-challenge.html">Campaign Dashboard</a>
+      <a class="site-nav-link" href="mo-votes-email-tool.html">Email Templates</a>
     </div>
   </div>
 </nav>
@@ -367,14 +426,28 @@
     <p class="section-label">Contact</p>
     <h2 class="section-title">Ready to connect?</h2>
     <p class="section-desc">Reach out to learn how your organization can partner with MO Votes — or to get your team set up with resources.</p>
+    <div class="felicia-card">
+      <img class="felicia-photo" src="felicia.png" alt="Dr. Felicia Hampton"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="felicia-photo-fallback" style="display:none;">FH</div>
+      <div class="felicia-body">
+        <p class="felicia-intro">
+          <strong>Your voice is vital.</strong> Healthcare professionals in Missouri know the health of our communities is tied to a strong democracy. Join this <span class="accent">nonpartisan movement</span> to build healthier communities through civic engagement.
+        </p>
+        <p class="felicia-quote">
+          "We're not just treating symptoms — we're fostering a healthier, more equitable society by addressing the root causes of health disparities."
+        </p>
+      </div>
+    </div>
+
     <div class="contact-card">
       <div>
         <div class="contact-label">Partnership Engagement</div>
         <div class="contact-name">Felicia Hampton, Ph.D., BSN, RN</div>
         <div class="contact-role">Program Fellow, MO Votes · Powered by Vot-ER<br/>Community Health Commission of Missouri</div>
-        <a class="contact-email" href="mailto:felicia@vot-er.org">
+        <a class="contact-email" href="/cdn-cgi/l/email-protection#4127242d2822282001372e356c24336f2e3326">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          felicia@vot-er.org
+          <span class="__cf_email__" data-cfemail="6b0d0e070208020a2b1d041f460e194504190c">[email&#160;protected]</span>
         </a>
       </div>
       <div class="contact-badge">
@@ -390,8 +463,4 @@
 <!-- FOOTER -->
 <footer>
   <p>MO Votes · Powered by <a href="https://vot-er.org" target="_blank">Vot-ER</a> · Community Health Commission of Missouri</p>
-  <p style="margin-top:0.4rem;">Nonpartisan voter mobilization · Voting as a Social Determinant of Health</p>
-</footer>
-
-</body>
-</html>
+  <p
