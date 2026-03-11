@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="MO Votes resource center — Vot-ER badges, facility materials, training videos, partner outreach templates, and the full digital resource library for Missouri healthcare professionals."/>
 <meta name="theme-color" content="#083a51"/>
-<title>Resources — MO Votes</title>
+<title>For Sites — MO Votes</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
 <style>
   /* ── SKIP LINK ── */
@@ -146,6 +146,35 @@
   }
   .email-cta-btn:hover { background: #a93226; transform: translateY(-2px); }
 
+  /* ── CONTACT FORM ── */
+  .contact-section { padding: 3.5rem 2rem 5rem; border-top: 1.5px solid var(--border); }
+  .contact-section-inner { max-width: 720px; margin: 0 auto; }
+  .contact-form { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-group label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--navy); }
+  .form-group input, .form-group textarea {
+    border: 1.5px solid var(--border); border-radius: 8px;
+    padding: 0.65rem 0.85rem; font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem; color: var(--navy); background: var(--white);
+    outline: none; transition: border-color 0.15s;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--red); box-shadow: 0 0 0 3px rgba(192,57,43,0.08);
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+  .form-submit {
+    background: var(--red); color: var(--white);
+    font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 700;
+    padding: 0.8rem 1.75rem; border-radius: 10px; border: none;
+    cursor: pointer; align-self: flex-start;
+    transition: background 0.15s, transform 0.15s;
+    box-shadow: 0 4px 14px rgba(192,57,43,0.25);
+  }
+  .form-submit:hover { background: #a93226; transform: translateY(-1px); }
+  .form-note { font-size: 0.72rem; color: var(--gray); font-style: italic; margin-top: 0.5rem; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .form-submit { width: 100%; justify-content: center; } }
+
   /* ── FOOTER ── */
   footer { background: var(--navy); padding: 2rem; text-align: center; font-size: 0.72rem; color: var(--on-dark-muted); }
   footer a { color: var(--on-dark-muted); text-decoration: underline; }
@@ -210,8 +239,8 @@
       <a class="site-nav-link" href="index.html">Home</a>
       <div class="site-nav-divider" aria-hidden="true"></div>
       <a class="site-nav-link" href="mo-votes-challenge.html">Campaign</a>
-      <a class="site-nav-link active" href="resources.html" aria-current="page">Resources</a>
-      <a class="site-nav-link" href="mo-votes-email-tool.html">Email Templates</a>
+      <a class="site-nav-link active" href="resources.html" aria-current="page">For Sites</a>
+      <a class="site-nav-link" href="mo-votes-email-tool.html">For Organizers</a>
       <div class="site-nav-divider" aria-hidden="true"></div>
       <a class="site-nav-link" href="make-a-plan.html">Make a Plan</a>
     </div>
@@ -220,14 +249,19 @@
 
 <header class="page-header">
   <div class="page-header-inner">
-    <span class="page-eyebrow" aria-hidden="true">MO Votes · Resource Center</span>
-    <h1 class="page-title">Tools to bring civic engagement into your practice</h1>
-    <p class="page-desc">Everything you need to integrate nonpartisan voter registration into your clinic, recruit healthcare professionals, and mobilize Missouri communities.</p>
+    <span class="page-eyebrow" aria-hidden="true">For Healthcare Sites &amp; Providers</span>
+    <h1 class="page-title">Set up your facility for civic engagement</h1>
+    <p class="page-desc">Free tools from Vot-ER built for hospitals, FQHCs, and clinics — get your badge, order facility materials, and start registering voters in minutes. Nonpartisan and HIPAA-compliant.</p>
   </div>
 </header>
 
 <main id="main-content">
 <div class="page-body">
+
+  <div style="background:var(--light); border:1.5px solid var(--border); border-radius:12px; padding:1rem 1.25rem; margin-bottom:2.5rem; display:flex; align-items:flex-start; gap:0.75rem; font-size:0.84rem; color:var(--gray); line-height:1.6;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38b1ea" stroke-width="2" aria-hidden="true" focusable="false" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span><strong style="color:var(--navy);">This page is for healthcare sites and providers</strong> — clinics, hospitals, FQHCs, and individual practitioners who want to integrate voter registration into their facility. If you're an organizer recruiting healthcare partners, visit <a href="mo-votes-email-tool.html" style="color:var(--red); font-weight:600;">For Organizers</a>.</span>
+  </div>
 
   <!-- VIDEO -->
   <section class="section-block" aria-labelledby="video-heading">
@@ -306,36 +340,54 @@
     </div>
   </section>
 
-  <hr class="section-divider" aria-hidden="true"/>
-
-  <!-- EMAIL TEMPLATES -->
-  <section class="section-block" aria-labelledby="email-heading">
-    <span class="sec-label" aria-hidden="true">For MO Votes Organizers</span>
-    <h2 class="sec-title" id="email-heading">Recruit healthcare professionals</h2>
-    <p class="sec-desc">Ready-to-send outreach emails for every stage of partner engagement — from warm introductions to post-meeting follow-ups. Open directly in Gmail or Outlook.</p>
-
-    <div class="email-cta">
-      <div>
-        <span class="email-cta-tag">5 Templates · Ready to Send</span>
-        <div class="email-cta-title">MO Votes Partner Outreach Email Templates</div>
-        <p class="email-cta-desc">Pick a template, review the body, and send — right from your inbox. Each template is written for a specific moment in the partner relationship.</p>
-        <ul class="email-cta-list" aria-label="Available email templates">
-          <li class="email-cta-item">Warm Intro Request</li>
-          <li class="email-cta-item">Connector Introduction</li>
-          <li class="email-cta-item">Post-Meeting Follow-Up</li>
-          <li class="email-cta-item">Re-Engagement</li>
-          <li class="email-cta-item">Partner Follow-Up (Senior Leadership)</li>
-        </ul>
-      </div>
-      <a class="email-cta-btn" href="mo-votes-email-tool.html">
-        Open Email Templates
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </section>
 
 </div>
 </main>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" aria-labelledby="site-contact-heading">
+  <div class="contact-section-inner">
+    <span class="sec-label" aria-hidden="true">Get in Touch</span>
+    <h2 class="sec-title" id="site-contact-heading">Ready to set up your site?</h2>
+    <p class="sec-desc">Reach out and we'll help you get enrolled, badges ordered, and facility materials in place. All Vot-ER resources are free.</p>
+    <!--
+      SETUP: Replace FORMSPREE_ID with your Formspree form ID.
+      Sign up free at formspree.io, create a form, and paste the ID here.
+      Example: action="https://formspree.io/f/xpzgkdab"
+    -->
+    <form class="contact-form" action="https://formspree.io/f/FORMSPREE_ID" method="POST">
+      <input type="hidden" name="_subject" value="MO Votes — Healthcare Site Inquiry">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="site-name">Name <span aria-hidden="true">*</span></label>
+          <input type="text" id="site-name" name="name" placeholder="Dr. Jane Smith" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="site-org">Organization</label>
+          <input type="text" id="site-org" name="organization" placeholder="St. Luke's Hospital" autocomplete="organization">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="site-role">Role / Title</label>
+          <input type="text" id="site-role" name="role" placeholder="Chief Medical Officer">
+        </div>
+        <div class="form-group">
+          <label for="site-email">Email <span aria-hidden="true">*</span></label>
+          <input type="email" id="site-email" name="email" placeholder="you@yourhospital.org" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="site-message">How can we help?</label>
+        <textarea id="site-message" name="message" placeholder="Tell us about your facility and how you'd like to get involved..."></textarea>
+      </div>
+      <div>
+        <button type="submit" class="form-submit">Send Message</button>
+        <p class="form-note">Replies go to partnerships@vot-er.org — we respond within 2 business days.</p>
+      </div>
+    </form>
+  </div>
+</section>
 
 <footer role="contentinfo">
   <p>MO Votes · Powered by <a href="https://vot-er.org" target="_blank" rel="noopener noreferrer">Vot-ER<span class="sr-only"> (opens in new tab)</span></a> · Missouri Foundation for Health</p>
