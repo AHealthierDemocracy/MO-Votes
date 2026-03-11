@@ -36,9 +36,10 @@
     --navy:    #083a51;
     --blue:    #106a94;
     --cyan:    #38b1ea;
-    --cyan-lt: #d0eef9;
-    --light:   #e8f6fd;
-    --offwhite:#f4fafd;
+    --cyan-lt: #dce2e8;
+    --red:     #c0392b;
+    --light:   #eef0f4;
+    --offwhite:#f6f7f9;
     --gray:    #4a5568; /* darkened from #64748b for WCAG AA */
     --white:   #ffffff;
     --tip-bg:  #fffbeb;
@@ -105,7 +106,7 @@
   .meta-row { display: grid; grid-template-columns: 100px 1fr; }
   .meta-row + .meta-row { border-top: 1px solid var(--cyan-lt); }
   .meta-k { background: var(--navy); color: var(--white); font-size: 0.7rem; font-weight: 600; padding: 0.5rem 0.75rem; display: flex; align-items: center; }
-  .meta-v { background: #f0faff; font-size: 0.8rem; color: var(--navy); padding: 0.5rem 0.85rem; display: flex; align-items: center; }
+  .meta-v { background: #f8f9fa; font-size: 0.8rem; color: var(--navy); padding: 0.5rem 0.85rem; display: flex; align-items: center; }
 
   .body-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.4rem; }
   .body-hint { font-size: 0.67rem; color: var(--gray); font-style: italic; }
@@ -116,9 +117,9 @@
     border: 1.5px solid var(--cyan-lt); border-radius: 10px;
     padding: 1rem 1.1rem; font-family: 'Poppins', sans-serif;
     font-size: 0.85rem; line-height: 1.8; color: var(--navy);
-    background: #fafeff; resize: vertical; outline: none; transition: border-color 0.15s;
+    background: #fafafa; resize: vertical; outline: none; transition: border-color 0.15s;
   }
-  .email-body:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(56,177,234,0.1); }
+  .email-body:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(192,57,43,0.1); }
 
   .ph-legend { font-size: 0.67rem; color: var(--gray); margin-top: 0.45rem; font-style: italic; }
   .ph-legend mark { background: #fff3cd; color: #7B0000; border-radius: 3px; padding: 0 3px; font-style: normal; font-weight: 600; }

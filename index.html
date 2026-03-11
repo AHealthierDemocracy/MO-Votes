@@ -23,13 +23,14 @@
     --navy:     #083a51;
     --blue:     #106a94;
     --cyan:     #38b1ea;
-    --cyan-lt:  #d0eef9;
+    --cyan-lt:  #dce2e8;
     --red:      #c0392b; /* darkened from #e64c4c for contrast on light backgrounds */
+    --red-lt:   #fdecea;
     --gold:     #f5a623;
     --white:    #ffffff;
-    --offwhite: #f4fafd;
+    --offwhite: #f6f7f9;
     --gray:     #4a5568; /* darkened from #64748b for reliable WCAG AA */
-    --light:    #e8f6fd;
+    --light:    #eef0f4;
     /* On-dark text — replaces rgba opacity patterns that fail contrast */
     --on-dark-body: #a8cfe0;
     --on-dark-muted: #7fb8d4;
@@ -90,13 +91,13 @@
   }
   .hero-cta {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--cyan); color: var(--navy);
+    background: var(--red); color: var(--white);
     font-weight: 700; font-size: 0.88rem;
     padding: 0.75rem 1.6rem; border-radius: 10px;
     text-decoration: none; transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
-    box-shadow: 0 4px 20px rgba(56,177,234,0.35);
+    box-shadow: 0 4px 20px rgba(192,57,43,0.35);
   }
-  .hero-cta:hover { background: #5ec4f0; transform: translateY(-2px); box-shadow: 0 6px 26px rgba(56,177,234,0.45); }
+  .hero-cta:hover { background: #a93226; transform: translateY(-2px); box-shadow: 0 6px 26px rgba(192,57,43,0.45); }
   .hero-cta:focus-visible { outline-color: #ffffff; }
 
   /* Fix contrast: was rgba(255,255,255,0.35) ~1.9:1 — fails */
@@ -135,23 +136,23 @@
     border-radius: 12px; padding: 1.2rem 1.1rem; text-align: center;
   }
   .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; line-height: 1; }
-  .stat-num span { color: var(--cyan); }
+  .stat-num span { color: var(--red); }
   .stat-label { font-size: 0.72rem; color: var(--gray); margin-top: 0.3rem; line-height: 1.4; }
 
   /* ── HOW ── */
   .how-bg { background: var(--navy); }
-  .how-bg .section-label { color: var(--cyan); } /* was rgba(56,177,234,0.7) — use full cyan */
+  .how-bg .section-label { color: #f08070; } /* warm red on dark — readable */
   .how-bg .section-title { color: var(--white); }
   .how-bg .section-desc { color: var(--on-dark-body); } /* was rgba(255,255,255,0.55) — fails contrast */
 
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; list-style: none; padding: 0; }
   .step {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(56,177,234,0.2);
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(192,57,43,0.25);
     border-radius: 12px; padding: 1.5rem 1.3rem;
   }
   .step-num {
     font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--cyan); margin-bottom: 0.75rem; display: block;
+    color: #f08070; margin-bottom: 0.75rem; display: block;
   }
   .step-title { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; line-height: 1.3; }
   .step-desc { font-size: 0.82rem; color: var(--on-dark-body); line-height: 1.6; } /* was rgba(255,255,255,0.55) */
@@ -167,12 +168,12 @@
   }
   .felicia-photo {
     width: 88px; height: 88px; border-radius: 50%;
-    object-fit: cover; border: 3px solid var(--cyan);
+    object-fit: cover; border: 3px solid var(--red);
     flex-shrink: 0;
   }
   .felicia-photo-fallback {
     width: 88px; height: 88px; border-radius: 50%;
-    background: var(--navy); border: 3px solid var(--cyan);
+    background: var(--navy); border: 3px solid var(--red);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; font-size: 1.6rem; color: var(--cyan); font-weight: 800;
   }
@@ -182,7 +183,7 @@
   .felicia-intro .accent { color: var(--red); font-weight: 700; }
   .felicia-quote {
     font-size: 0.83rem; color: var(--gray); font-style: italic;
-    background: var(--white); border-left: 3px solid var(--cyan);
+    background: var(--white); border-left: 3px solid var(--red);
     padding: 0.65rem 0.9rem; border-radius: 0 8px 8px 0;
     line-height: 1.6;
   }
@@ -351,7 +352,7 @@
       <p class="section-label" aria-hidden="true">Resources</p>
       <h2 class="section-title" id="tools-heading">Tools for partners &amp; organizers</h2>
       <p class="section-desc">Vot-ER badges, facility materials, training videos, partner outreach templates, and the full digital resource library — all in one place.</p>
-      <a href="resources.html" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy);color:var(--white);font-weight:700;font-size:0.84rem;padding:0.7rem 1.4rem;border-radius:10px;text-decoration:none;">
+      <a href="resources.html" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--red);color:var(--white);font-weight:700;font-size:0.84rem;padding:0.7rem 1.4rem;border-radius:10px;text-decoration:none;">
         Browse All Resources
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
