@@ -257,6 +257,8 @@
       <a class="site-nav-link active" href="mo-votes-challenge.html" aria-current="page">Campaign</a>
       <a class="site-nav-link" href="resources.html">Resources</a>
       <a class="site-nav-link" href="mo-votes-email-tool.html">Email Templates</a>
+      <div class="site-nav-divider" aria-hidden="true"></div>
+      <a class="site-nav-link" href="make-a-plan.html">Make a Plan</a>
     </div>
   </div>
 </nav>
@@ -279,7 +281,7 @@
 
     <!-- GOAL TRACKER -->
     <section class="tracker-section" aria-labelledby="tracker-title">
-      <div class="tracker-title" id="tracker-title">Missouri Goal: 10,000 Voters Empowered</div>
+      <div class="tracker-title" id="tracker-title">Missouri Goal: 10,000 Unique Voters Empowered</div>
       <div class="progress-container">
         <div
           class="progress-bar"
@@ -287,26 +289,29 @@
           aria-valuenow="8"
           aria-valuemin="0"
           aria-valuemax="100"
-          aria-label="Missouri voter mobilization goal: 842 of 10,000 voters empowered (8% complete)"
+          aria-label="Missouri voter mobilization goal: 842 of 10,000 unique voters empowered (8% complete)"
           style="width: 8%;"
         >
           <span aria-hidden="true">8%</span>
         </div>
       </div>
-      <dl class="stats-grid">
-        <div class="stat-item">
-          <dd>842</dd>
-          <dt>Voter Engagements</dt>
+      <p style="font-size:0.72rem; color:var(--gray); margin-top:0.5rem; text-align:right;">842 of 10,000 unique voters empowered · Updated Feb 6, 2025</p>
+
+      <!-- MISSOURI DASHBOARD -->
+      <div style="margin-top:1.5rem; border-top:1px solid var(--border); padding-top:1.25rem;">
+        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--gray); margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Missouri Dashboard
         </div>
-        <div class="stat-item">
-          <dd>67</dd>
-          <dt>Healthcare Champions</dt>
+        <div class="dashboard-placeholder" role="img" aria-label="Missouri voter engagement dashboard — chart coming soon">
+          <div class="dashboard-placeholder-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/><polyline points="3 15 8 10 12 14 17 8 21 11"/></svg>
+          </div>
+          <div class="dashboard-placeholder-label" aria-hidden="true">Dashboard Coming Soon</div>
+          <div class="dashboard-placeholder-sub" aria-hidden="true">Missouri voter engagement chart will appear here</div>
         </div>
-        <div class="stat-item">
-          <dd>23</dd>
-          <dt>Participating Sites</dt>
-        </div>
-      </dl>
+        <p style="font-size:0.65rem; color:var(--gray); font-style:italic; text-align:center; margin-top:0.4rem;">Replace the placeholder above with your Missouri dashboard embed or chart.</p>
+      </div>
     </section>
 
     <div class="main-grid">
@@ -368,8 +373,8 @@
                 </div>
               </li>
             </ol>
-            <a href="make-a-plan.html" class="btn btn-red btn-full">
-              Make a Plan to Vote in Missouri
+            <a href="resources.html" class="btn btn-red btn-full">
+              Browse Resources &amp; Tools
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <p style="text-align:center; font-size:0.72rem; color:var(--gray); margin-top:0.6rem;">Nonpartisan · Free · HIPAA-Compliant</p>
@@ -396,24 +401,6 @@
 
       <!-- RIGHT COLUMN -->
       <div class="right-col">
-
-        <!-- MISSOURI DASHBOARD -->
-        <div class="card" aria-labelledby="dashboard-heading">
-          <div class="card-header" id="dashboard-heading">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            Missouri Dashboard
-          </div>
-          <div class="card-body" style="padding:1rem;">
-            <div class="dashboard-placeholder" role="img" aria-label="Missouri voter engagement dashboard — chart coming soon">
-              <div class="dashboard-placeholder-icon" aria-hidden="true">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/><polyline points="3 15 8 10 12 14 17 8 21 11"/></svg>
-              </div>
-              <div class="dashboard-placeholder-label" aria-hidden="true">Dashboard Coming Soon</div>
-              <div class="dashboard-placeholder-sub" aria-hidden="true">Missouri voter engagement chart will appear here</div>
-            </div>
-            <p style="font-size:0.68rem; color:var(--gray); font-style:italic; text-align:center;">Replace the placeholder above with your Missouri dashboard embed or chart.</p>
-          </div>
-        </div>
 
         <!-- CITY LEADERBOARD -->
         <div class="card" aria-labelledby="leaderboard-heading">
@@ -469,35 +456,6 @@
           </div>
         </div>
 
-        <!-- TOOLKIT -->
-        <div class="card" aria-labelledby="toolkit-heading">
-          <div class="card-header" id="toolkit-heading">
-            <span aria-hidden="true">📥</span> Toolkit
-          </div>
-          <div class="card-body">
-            <ul style="list-style:none; padding:0; margin-bottom:1rem;">
-              <li style="margin-bottom:0.75rem;">
-                <a href="resources.html" style="text-decoration:none; color:var(--navy); font-size:0.88rem; font-weight:600; display:block;">
-                  Office Poster
-                  <span style="display:block; font-weight:400; font-size:0.75rem; color:var(--gray);">PDF for waiting rooms</span>
-                </a>
-              </li>
-              <li style="margin-bottom:0.75rem;">
-                <a href="resources.html" style="text-decoration:none; color:var(--navy); font-size:0.88rem; font-weight:600; display:block;">
-                  Talking Points
-                  <span style="display:block; font-weight:400; font-size:0.75rem; color:var(--gray);">Patient conversation guides</span>
-                </a>
-              </li>
-              <li>
-                <a href="resources.html" style="text-decoration:none; color:var(--navy); font-size:0.88rem; font-weight:600; display:block;">
-                  Badge Backers
-                  <span style="display:block; font-weight:400; font-size:0.75rem; color:var(--gray);">QR codes for your ID badge</span>
-                </a>
-              </li>
-            </ul>
-            <a href="resources.html" class="btn btn-navy" style="width:100%; display:inline-flex; justify-content:center; font-size:0.82rem; text-decoration:none;">Access Full Resource Library</a>
-          </div>
-        </div>
 
       </div>
     </div>
